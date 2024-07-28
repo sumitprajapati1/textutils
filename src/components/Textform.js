@@ -21,7 +21,22 @@ export default function Textform(props) {
     const handleClearText=()=>
     {
 
-        setText(" ")
+        setText(" ");
+    }
+    const removeSpace=()=>
+    {
+        let newText= text.split(/[  ]+/);
+        setText(newText.join(" "));
+    }
+    const textCount=(text)=>
+    {
+        return text.split(/\s+/).filter((word) => word.length > 0).length;
+    }
+    const countPunctuation=(text)=>
+    {
+        let punctuationRegex = /[.,\/#!$%\^&\*;:{}=\-_`~()]/g;
+        let count  = text.match(punctuationRegex);
+        return count ? count.length: 0 ;
     }
 
 
@@ -37,13 +52,18 @@ export default function Textform(props) {
         <button type="button" onClick={handleUpperClick} className="btn btn-primary my-3 mx-2"> UpperCase </button>
         <button type="button" onClick={handleLowerClick} className="btn btn-primary my-3 mx-2"> LowerCase </button>
         <button type="button" onClick={handleClearText}className="btn btn-primary my-3 mx-2"> Clear Text </button>
-        <button type="button" className="btn btn-primary my-3 mx-2">Remove Spaces</button>
+        <button type="button" onClick={removeSpace}className="btn btn-primary my-3 mx-2">Remove Spaces</button>
       </div>
 
       <div className="container my-3">
         <h2> Words Summary:</h2>
-        <p> Words: </p> 
-        <p> Charachters: </p>
+        <p> Words:  <span className='fw-bold'>{textCount(text)} </span> </p> 
+        <p> Charachters: <span className='fw-bold'> {text.length} </span></p>
+        <p> Punctuations: <span className='fw-bold'> {countPunctuation(text)} </span> </p>
+        <p> Spaces : <span className='fw-bold'>  { text.split(" ").length>0?text.split(" ").length-1:'0' }  </span></p>
+        <p> Time : <span className='fw-bold'> { 0.008 * text.length} </span> Minutes</p>   {/* time taken to read the world  */}
+        <h3> Preview: </h3>
+        <p> {text.length>0?text:"Enter Some text to preview it:"}</p>
       </div>
 
 
