@@ -42,11 +42,13 @@ export default function Textform(props) {
 
   return (
     <div>
-      <div className="container my-3">
+      <div className="container my-3 " style={{color:props.color==="dark"?"white":'#042743'}}>
         <div className="container p-3">
             <h1> {props.heading} </h1>
             <p> Free Software Utility To Annalyze the words </p>
-            <textarea className="form-control" placeholder="Enter Text " id="floatingTextarea2" value={text} onChange={handleOnChange} style={{height:'100px'}}></textarea>
+            <textarea className="form-control" placeholder="Enter Text " 
+             style={{backgroundColor:props.mode==='dark'?'#042743':'white',color:props.mode==='dark'?'white':'#042743'}}
+            id="floatingTextarea2" value={text} onChange={handleOnChange} rows="6"></textarea>
         </div>
 
         <button type="button" onClick={handleUpperClick} className="btn btn-primary my-3 mx-2"> UpperCase </button>
@@ -55,7 +57,7 @@ export default function Textform(props) {
         <button type="button" onClick={removeSpace}className="btn btn-primary my-3 mx-2">Remove Spaces</button>
       </div>
 
-      <div className="container my-3">
+      <div className="container my-3"  style={{color:props.color==='dark'?'white':'#042743'}}>
         <h2> Words Summary:</h2>
         <p> Words:  <span className='fw-bold'>{textCount(text)} </span> </p> 
         <p> Charachters: <span className='fw-bold'> {text.length} </span></p>
