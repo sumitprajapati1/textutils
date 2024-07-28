@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export default function Textform(props) {
 
-    const [text , setText] = useState("");
+    const [text , setText] = useState(" ");
     
     const handleOnChange=(event)=>
     {
@@ -42,7 +42,7 @@ export default function Textform(props) {
 
   return (
     <div>
-      <div className="container my-3 " style={{color:props.color==="dark"?"white":'#042743'}}>
+      <div className="container my-3 " style={{color:props.mode==="dark"?"white":'#042743'}}>
         <div className="container p-3">
             <h1> {props.heading} </h1>
             <p> Free Software Utility To Annalyze the words </p>
@@ -57,7 +57,7 @@ export default function Textform(props) {
         <button type="button" onClick={removeSpace}className="btn btn-primary my-3 mx-2">Remove Spaces</button>
       </div>
 
-      <div className="container my-3"  style={{color:props.color==='dark'?'white':'#042743'}}>
+      <div className="container my-3"  style={{color:props.mode==='dark'?'white':'#042743'}}>
         <h2> Words Summary:</h2>
         <p> Words:  <span className='fw-bold'>{textCount(text)} </span> </p> 
         <p> Charachters: <span className='fw-bold'> {text.length} </span></p>

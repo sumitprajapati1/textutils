@@ -2,25 +2,34 @@ import './App.css';
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
+import About from './components/About';
+import { BrowserRouter as Router , Routes , Route } from 'react-router-dom';
 function App() {
-  const [color,setColor]=useState("light");
- const tooglemode=()=>{
-  if(color=="light")
+  const [mode,setMode]=useState("light");
+ const toggleMode=()=>{
+  if(mode==="light")
   {
-    setColor("dark");
+    setMode("dark");
     document.body.style.backgroundColor= "#042743";
   }
   else
   {
-    setColor("light");
+    setMode("light");
     document.body.style.backgroundColor="white";
   }
  }
   return (
-    <>
-    <Navbar color={color} tooglemode={tooglemode}/>
-    <Textform heading="Text Analyzer" color={color}></Textform>
+   <Router>
+     <>
+    <Navbar mode={mode} toggleMode={toggleMode}/>
+    <div className="container my-3 p-3">
+    <Routes>
+        <Route path='/About' element={<About/>}/> 
+        <Route path='/' element={ <Textform heading="Text Analyzer" mode={mode}/>}/>
+    </Routes>
+    </div>
     </>
+   </Router>
   );
 }
 
